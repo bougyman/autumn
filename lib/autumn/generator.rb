@@ -2,7 +2,7 @@
 # directories of Autumn objects for script/generate.
 
 require 'yaml'
-require 'libs/coder'
+require 'autumn/coder'
 
 module Autumn
   

@@ -4,9 +4,9 @@
 # have exited. To use this script as a daemon, see the script/daemon script.
 
 AL_ROOT = File.expand_path("#{File.dirname(__FILE__)}/..")
-$: << AL_ROOT
 
-require 'libs/genesis'
+require 'autumn'
+require 'autumn/genesis'
 
-puts "Loading Autumn #{AUTUMN_VERSION}"
+puts "Loading Autumn #{Autumn::Version}"
 Autumn::Genesis.new.boot!

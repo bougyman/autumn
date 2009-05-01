@@ -4,7 +4,7 @@
 require 'yaml'
 require 'timeout'
 require 'erb'
-require 'libs/formatting'
+require 'autumn/formatting'
 
 module Autumn
   

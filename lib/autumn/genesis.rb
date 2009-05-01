@@ -8,9 +8,9 @@ require 'logger'
 require 'facets'
 require 'facets/random'
 require 'anise'
-require 'libs/misc'
-require 'libs/speciator'
-require 'libs/authentication'
+require 'autumn/misc'
+require 'autumn/speciator'
+require 'autumn/authentication'
 
 AUTUMN_VERSION = "3.0 (7-4-08)"
 
@@ -78,15 +78,15 @@ module Autumn # :nodoc:
     # PREREQS: load_global_settings
 
     def load_libraries
-      require 'libs/inheritable_attributes'
-      require 'libs/daemon'
-      require 'libs/stem_facade'
-      require 'libs/ctcp'
-      require 'libs/stem'
-      require 'libs/leaf'
-      require 'libs/channel_leaf'
-      require 'libs/foliater'
-      require 'libs/log_facade'
+      require 'autumn/inheritable_attributes'
+      require 'autumn/daemon'
+      require 'autumn/stem_facade'
+      require 'autumn/ctcp'
+      require 'autumn/stem'
+      require 'autumn/leaf'
+      require 'autumn/channel_leaf'
+      require 'autumn/foliater'
+      require 'autumn/log_facade'
     end
   
     # Initializes the system-level logger.
@@ -111,7 +111,7 @@ module Autumn # :nodoc:
     # PREREQS: load_libraries
     
     def load_daemon_info
-      Dir.glob("#{AL_ROOT}/resources/daemons/*.yml").each do |yml_file|
+      Dir.glob("#{::Autumn::ROOT}/autumn/resources/daemons/*.yml").each do |yml_file|
         yml = YAML.load(File.open(yml_file, 'r'))
         Daemon.new File.basename(yml_file, '.yml'), yml
       end
@@ -135,7 +135,7 @@ module Autumn # :nodoc:
       end
       
       require 'dm-core'
-      require 'libs/datamapper_hacks'
+      require 'autumn/datamapper_hacks'
       
       dbconfig = YAML.load(File.open(db_file, 'r'))
       dbconfig.rekey(&:to_sym).each do |db, config|

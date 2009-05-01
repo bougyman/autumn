@@ -19,8 +19,10 @@ OptionParser.new do |opt|
 end
 
 libs =  " -r irb/completion"
-libs << " -r libs/console_boot"
+libs << " -r autumn"
+libs << " -r autumn/console_boot"
 
-require 'libs/genesis'
-puts "Loading Autumn #{AUTUMN_VERSION}..."
+require "autumn"
+ENV["AUTUMN_ROOT"] = AL_ROOT
+puts "Loading Autumn #{Autumn::Version} in #{AL_ROOT} ..."
 exec "#{options[:irb]} #{libs}"
