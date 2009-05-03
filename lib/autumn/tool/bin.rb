@@ -10,8 +10,9 @@ module Autumn
 
         def default_pidfile # {{{
           return @default_pidfile if @default_pidfile
-          require "pathname"
-          @default_pidfile = (Pathname.new(".").expand_path.basename.to_s + ".pid").strip
+          al_root
+          pn = Pathname.new(AL_ROOT)
+          @default_pidfile = (pn.expand_path.join("tmp", pn.basename.to_s + ".pid")).strip
         end # }}}
 
         # We're really only concerned about win32ole, so we focus our check on its
@@ -137,11 +138,8 @@ module Autumn
         def usage # {{{
           txt = [
             "\n  Usage:", 
-            "autumn <start [PIDFILE]|stop [PIDFILE]|restart [PIDFILE]|status [PIDFILE]|create PROJECT|console> [options]\n",
+            "autumn <start|stop|restart|status|create|console> PROJECT [options]\n",
             "Commands:\n",
-            "  * All commands which take an optional PIDFILE (defaults to PROJECT.pid otherwise).",
-            "  * All commands which start a autumn instance will default to webrick on port 7000",
-            "    unless you supply the rack options -p/--port PORT and/or * -s/--server SERVER.\n",
             " start   - Starts an instance of this application.\n",
             " stop    - Stops a running instance of this application.\n",
             " restart - Stops running instance of this application, then starts it back up.  Pidfile",
@@ -149,14 +147,15 @@ module Autumn
             " status  - Gives status of a running autumn instance\n",
             " create  - Creates a new prototype Autumn application in a directory named PROJECT in",
             "           the current directory.  autumn create foo would make ./foo containing an",
-            "           application prototype. Rack options are ignored here.\n",
-            " console - Starts an irb console with app.rb (and irb completion) loaded. This command",
-            "           ignores rack options, ARGV is passed on to IRB.\n\n\t"
+            "           application prototype.\n",
+            " console - Starts an irb console with autumn (and irb completion) loaded.",
+            "           ARGV is passed on to IRB.\n\n"
           ].join("\n\t")
 
-          txt << start_options
-          txt << stop_options
-          txt << create_options
+          txt <<  "* All commands which take an optional PIDFILE (-p/--pid) default to PROJECT.pid.\n"
+          txt <<  "* All commands take PROJECT as the directory the autumn bot lives in.\n"
+          txt << start_options.to_s << "\n"
+          txt << create_options.to_s << "\n"
           #if is_windows?
             #txt << %x{ruby #{rackup_path} --help}.split("\n").reject { |line| line.match(/^Usage:/) }.join("\n\t")
           #else
@@ -166,40 +165,61 @@ module Autumn
 
         def start_options
           @start_opts ||= OptionParser.new do |o|
-            o.banner "Start/Restart Options"
-            o.on("-p", "--pid PIDFILE", "Pidfile for this autumn process") { |pid| @pidfile = pid }
+            o.banner = "Start/Restart Options"
             o.on("-D", "--daemonize", "Daemonize the process") { |daem| @daemonize = true }
           end
+        end
+
+        def al_root
+          require "pathname"
+          dir = nil
+          if ARGV.size == 1
+            dir = Pathname.new(ARGV.shift)
+          elsif ARGV.size > 1
+            $stderr.puts "Unknown options given #{ARGV.join(" ")}"
+            puts usage
+            exit 1
+          end
+          if dir.nil? or not dir.directory?
+            dir = Pathname.new(ENV["PWD"]).expand_path
+            $stderr.puts "Path to autumn tree not given or invalid, using #{dir}"
+          end
+          Object.const_set("AL_ROOT", dir.expand_path.to_s)
+          Dir.chdir(AL_ROOT)
         end
 
         ### Methods for commands {{{
         def start # {{{
           start_options.parse!(ARGV)
+          al_root
+          
           # Find the name of this app
-          app_name = default_pidfile.sub(/\.pid$/,'')
+          puts "starting autumn"
           if @daemonize
-            if @pidfile
-              puts "User supplied pid: #{@pidfile}"
-              puts "Starting daemon with user defined pidfile: #{@pidfile}"
-            else
-              puts "Starting daemon with default pidfile: #{@pidfile = default_pidfile}"
+            require "daemons"
+            Daemons.run_proc(Pathname.new(AL_ROOT).basename, :ARGV => ["start"], :dir_mode => :normal, :dir => "tmp", :multiple => false) do
+              start_autumn
             end
-            if check_running?(@pidfile)
-              $stderr.puts "Autumn is already running with pidfile: #{@pidfile}"
-              exit 127
-            end
+            puts "Autumn started in the background"
           else
-            require "autumn/genesis"
+            start_autumn
           end
         end # }}}
 
-        def create_options(opts)
+        def start_autumn
+          require "autumn/genesis"
+          puts "Loading Autumn #{Autumn::VERSION}"
+          Autumn::Genesis.new.boot!
+        end
+
+        def create_options(opts = {})
           @create_opts ||= OptionParser.new do |o|
-            o.banner "Create Options"
+            o.banner = "Create Options"
             o.on("-f", "--force", "Force creation if dir already exists") { |yn| opts[:force] = true }
             o.on("-a", "--amend", "Update a tree") { |yn| opts[:amend] = true }
           end
         end
+        
         def create(command) # {{{
           create_options(opts = {}).parse!(ARGV)
           unless ARGV.size == 1
@@ -217,41 +237,22 @@ module Autumn
           Autumn::Tool::Create.create(project_name, opts)
         end # }}}
 
-        def stop_options
-          @start_opts ||= OptionParser.new do |o|
-            o.banner "Stop/Status Options"
-            o.on("-p", "--pid PIDFILE", "Pidfile for this autumn process") { |pid| @pidfile = pid }
-          end
-        end
-
         def stop(command) # {{{
-          stop_options.parse!(ARGV)
-          unless pid_file = find_pid(@pidfile)
-            $stderr.puts "No pid_file found!  Cannot stop autumn (may not be started)."
-            return false
-          end
-          pid = File.read(pid_file).to_i
-          puts "Stopping pid #{pid}"
-          Process.kill("INT", pid)
-          sleep 2
-          if is_running?(pid)
-            $stderr.puts "Process #{pid} did not die, forcing it with -9"
-            Process.kill(9, pid)
-            File.unlink(pid_file) if File.file?(pid_file)
-            true
-          else
-            File.unlink(pid_file) if File.file?(pid_file)
-            true
+          al_root
+          require "daemons"
+          Daemons.run_proc(Pathname.new(AL_ROOT).basename, :ARGV => ["stop"], :dir_mode => :normal, :dir => "tmp", :multiple => false) do
+            start_autumn
           end
         end # }}}
 
         def status(command) # {{{
-          stop_options.parse!(ARGV)
-          unless pid_file = find_pid(@pidfile)
+          al_root
+          pn = Pathname.new(AL_ROOT)
+          unless pid_file = find_pid(pn.join("tmp", pn.basename.to_s + ".pid"))
             $stderr.puts "No pid_file found! Autumn may not be started."
             exit 1
           end
-          puts "Pid file #{pid_file} found, PID is #{pid = File.read(pid_file)}"
+          puts "Pid file #{pid_file} found, PID is #{pid = File.read(pid_file).chomp}"
           unless is_running?(pid.to_i)
             $stderr.puts "PID #{pid} is not running"
             exit 1
@@ -268,7 +269,7 @@ module Autumn
               proc_dir = proc_dir.join(pid)
               # If we have a "stat" file, we'll assume linux and get as much info
               # as we can
-              if File.file?(stat_file = proc_dir.join("stat"))
+              if stat_file = proc_dir.join("stat") and stat_file.file?
                 stats = File.read(stat_file).split
                 puts "Autumn is running!\n\tCommand Line: %s\n\tVirtual Size: %s\n\tStarted: %s\n\tExec Path: %s\n\tStatus: %s" % [
                   File.read(proc_dir.join("cmdline")).split("\000").join(" "),
