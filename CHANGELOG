@@ -1,3 +1,15 @@
+[16bf894 | Sun May 03 14:16:23 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * moved start/stop/restart/status into the autumn bin, cleaning out script/
+
+[322c058 | Sun May 03 12:53:54 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * added start|stop|restart|status to bin.rb
+
+[8b907c2 | Sun May 03 12:29:08 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * activated post_process on project creation
+
 [f31139f | Sun May 03 12:22:00 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
 
   * fixed load paths in ./script/server

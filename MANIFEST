@@ -84,10 +84,8 @@ lib/skel/leaves/scorekeeper/views/points.txt.erb
 lib/skel/leaves/scorekeeper/views/usage.txt.erb
 lib/skel/log/README
 lib/skel/script/console
-lib/skel/script/daemon
 lib/skel/script/destroy
 lib/skel/script/generate
-lib/skel/script/server
 lib/skel/shared/README
 lib/skel/tmp/README
 spec/authentication_spec.rb
