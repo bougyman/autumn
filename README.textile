@@ -27,6 +27,8 @@ optionally use the Chronic gem to enhance its textual date parsing. The other
 example bot, Insulter, is much simpler and can run under any Autumn
 configuration.
 
+If you wish to install all possible dependencies, use @rake setup@
+
 h2. Directory Structure
 
 An Autumn installation is like a Ruby on Rails installation: There is a

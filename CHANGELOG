@@ -1,3 +1,15 @@
+[b3bb82c | Sun May 03 20:03:35 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * refactored skel/ specs for better separation.  got rake setup to install all deps needed to run skel/ application
+
+[17403cc | Sun May 03 17:01:31 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * added AUTHORS as std release file
+
+[6e3ec5c | Sun May 03 17:01:11 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * Version 3.1.8 fixes nag warning about resetting Autumn::ROOT
+
 [dd5f58e | Sun May 03 16:32:34 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
 
   * Version 3.1.7

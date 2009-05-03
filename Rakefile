@@ -45,6 +45,8 @@ GEMSPEC = Gem::Specification.new{|s|
 
   s.add_dependency('facets')
   s.add_dependency('anise')
+  s.add_dependency('english')
+  s.add_dependency('daemons')
 
   s.post_install_message = <<MESSAGE.strip
 ============================================================

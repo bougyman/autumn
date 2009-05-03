@@ -83,10 +83,18 @@ lib/skel/leaves/scorekeeper/views/history.txt.erb
 lib/skel/leaves/scorekeeper/views/points.txt.erb
 lib/skel/leaves/scorekeeper/views/usage.txt.erb
 lib/skel/log/README
+lib/skel/log/testing.log
 lib/skel/script/console
 lib/skel/script/destroy
 lib/skel/script/generate
 lib/skel/shared/README
+lib/skel/tasks/app.rake
+lib/skel/tasks/db.rake
+lib/skel/tasks/doc.rake
+lib/skel/tasks/gem_installer.rake
+lib/skel/tasks/log.rake
+lib/skel/tasks/setup.rake
+lib/skel/tasks/spec.rake
 lib/skel/tmp/README
 spec/authentication_spec.rb
 spec/channel_leaf_spec.rb
@@ -107,4 +115,3 @@ tasks/release.rake
 tasks/reversion.rake
 tasks/setup.rake
 tasks/spec.rake
-tasks/yard.rake
