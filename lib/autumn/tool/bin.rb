@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require 'optparse'
 ### This module offers the functionality to start, stop, restart, create,
 ### Check status, or run a console of an autumn application
 ### see autumn -h for usage
@@ -153,6 +154,9 @@ module Autumn
             "           ignores rack options, ARGV is passed on to IRB.\n\n\t"
           ].join("\n\t")
 
+          txt << start_options
+          txt << stop_options
+          txt << create_options
           #if is_windows?
             #txt << %x{ruby #{rackup_path} --help}.split("\n").reject { |line| line.match(/^Usage:/) }.join("\n\t")
           #else
@@ -160,61 +164,69 @@ module Autumn
           #end
         end # }}}
 
+        def start_options
+          @start_opts ||= OptionParser.new do |o|
+            o.banner "Start/Restart Options"
+            o.on("-p", "--pid PIDFILE", "Pidfile for this autumn process") { |pid| @pidfile = pid }
+            o.on("-D", "--daemonize", "Daemonize the process") { |daem| @daemonize = true }
+          end
+        end
+
         ### Methods for commands {{{
         def start # {{{
+          start_options.parse!(ARGV)
           # Find the name of this app
           app_name = default_pidfile.sub(/\.pid$/,'')
-          added_args = []
-          if daemonize = @ourargs.detect { |arg| arg.match(/^(-[dD]|--daemonize)$/) }
-            if pid_arg = @ourargs.detect { |arg| arg.match(/^(-P|--pid)/) }
-              puts "User supplied pid: #{pid_arg}"
-              pid_file = @ourargs[@ourargs.index(pid_arg) + 1]
-              puts "Starting daemon with user defined pidfile: #{pid_file}"
+          if @daemonize
+            if @pidfile
+              puts "User supplied pid: #{@pidfile}"
+              puts "Starting daemon with user defined pidfile: #{@pidfile}"
             else
-              puts "Starting daemon with default pidfile: #{pid_file = default_pidfile}"
-              added_args += ["-P", pid_file]
+              puts "Starting daemon with default pidfile: #{@pidfile = default_pidfile}"
             end
-            if check_running?(pid_file)
-              $stderr.puts "Autumn is already running with pidfile: #{pid_file}"
+            if check_running?(@pidfile)
+              $stderr.puts "Autumn is already running with pidfile: #{@pidfile}"
               exit 127
             end
-          end
-          added_args += ["-p", "7000"] unless @ourargs.detect { |arg| arg.match(/^(-p|--port)/) }
-          added_args += ["-s", "webrick"] unless @ourargs.detect { |arg| arg.match(/^(-s|--server)/) }
-          if is_windows?
-            exec("ruby", rackup_path.to_s, "config.ru", *(ARGV + added_args))
           else
-            exec(rackup_path.to_s, "config.ru", *(ARGV + added_args))
+            require "autumn/genesis"
           end
         end # }}}
 
+        def create_options(opts)
+          @create_opts ||= OptionParser.new do |o|
+            o.banner "Create Options"
+            o.on("-f", "--force", "Force creation if dir already exists") { |yn| opts[:force] = true }
+            o.on("-a", "--amend", "Update a tree") { |yn| opts[:amend] = true }
+          end
+        end
         def create(command) # {{{
-          project_name = @ourargs[@ourargs.index(command) + 1]
+          create_options(opts = {}).parse!(ARGV)
+          unless ARGV.size == 1
+            $stderr.puts "Invalid options given: #{ARGV.join(" ")}"
+            exit 1
+          end
+          project_name = ARGV.shift
           if project_name.nil?
             $stderr.puts "Must supply a valid project name, you gave none."
             puts usage
             exit 1
-          elsif project_name.match(/^-/)
-            $stderr.puts "Must supply a valid project name, you gave #{project_name}"
-            puts usage
-            exit 1
-          end
-          opts = {}
-          if @ourargs.detect { |arg| arg.match(/^(--force)/) }
-            puts "Overwriting any existing files as requested."
-            opts[:force] = true
-          end
-          if @ourargs.detect { |arg| arg.match(/^(--amend)/) }
-            puts "Only amending missing files as requested."
-            opts[:amend] = true
           end
           include_autumn
           require 'autumn/tool/create'
           Autumn::Tool::Create.create(project_name, opts)
         end # }}}
 
+        def stop_options
+          @start_opts ||= OptionParser.new do |o|
+            o.banner "Stop/Status Options"
+            o.on("-p", "--pid PIDFILE", "Pidfile for this autumn process") { |pid| @pidfile = pid }
+          end
+        end
+
         def stop(command) # {{{
-          unless pid_file = find_pid(@ourargs[@ourargs.index(command) + 1])
+          stop_options.parse!(ARGV)
+          unless pid_file = find_pid(@pidfile)
             $stderr.puts "No pid_file found!  Cannot stop autumn (may not be started)."
             return false
           end
@@ -234,7 +246,8 @@ module Autumn
         end # }}}
 
         def status(command) # {{{
-          unless pid_file = find_pid(@ourargs[@ourargs.index(command) + 1])
+          stop_options.parse!(ARGV)
+          unless pid_file = find_pid(@pidfile)
             $stderr.puts "No pid_file found! Autumn may not be started."
             exit 1
           end
