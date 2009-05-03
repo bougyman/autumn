@@ -1,3 +1,3 @@
 module Autumn
-  VERSION = "3.1.1"
+  VERSION = "3.1.3"
 end

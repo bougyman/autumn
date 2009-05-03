@@ -152,8 +152,7 @@ module Autumn
             "           ARGV is passed on to IRB.\n\n"
           ].join("\n\t")
 
-          txt <<  "* All commands which take an optional PIDFILE (-p/--pid) default to PROJECT.pid.\n"
-          txt <<  "* All commands take PROJECT as the directory the autumn bot lives in.\n"
+          txt <<  "* All commands take PROJECT as the directory the autumn bot lives in.\n\n"
           txt << start_options.to_s << "\n"
           txt << create_options.to_s << "\n"
           #if is_windows?

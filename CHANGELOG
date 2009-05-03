@@ -1,3 +1,11 @@
+[50769ee | Sun May 03 14:47:53 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * moved main rdoc task to root Rakefile, changed requires in authentication_spec. TODO: how are these spec run?
+
+[35f95df | Sun May 03 14:39:44 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * changed to normal versioning, updated misc files
+
 [dc6b8e5 | Sun May 03 14:30:23 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
 
   * updated AUTHORS
