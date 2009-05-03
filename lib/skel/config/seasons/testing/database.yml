@@ -1,7 +1,4 @@
 --- 
 Example: 
-  username: root
-  adapter: mysql
-  host: localhost
-  database: example_database
-  password: ""
+  adapter: sqlite3
+  database: $project.db

@@ -1,10 +1,10 @@
 --- 
 Example: 
-  nick: MyIRCBot
+  nick: $project
   leaves: 
   - Administrator
   - Scorekeeper
   - Insulter
   rejoin: true
-  channel: "#yourchannel"
-  server: irc.yourircserver.com
+  channel: "#autumn"
+  server: irc.freenode.net

@@ -24,7 +24,7 @@ module Autumn
       #   :layout copy one subdirectory in +proto+
 
       DEFAULT = {
-        :proto => File.join(ROOT, 'lib', 'skel'),
+        :proto => File.join(ROOT, 'skel'),
         :amend => false,
         :force => false,
         :layout => '/',

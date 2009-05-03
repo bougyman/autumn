@@ -87,7 +87,7 @@ class ProjectCreator
     return
     source = File.read(file)
     File.open(file, 'w+') do |io|
-      io.write(source.gsub('$project', "'#@name'"))
+      io.write(source.gsub('$project', @name))
     end
   end
 
