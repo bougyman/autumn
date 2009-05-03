@@ -22,27 +22,27 @@ end
 namespace :app do
   desc "Launch the Autumn daemon"
   task :start do
-    system 'script/daemon start'
+    system 'autumn start -D'
   end
   
   desc "Stop the Autumn daemon"
   task :stop do
-    system 'script/daemon stop'
+    system 'autumn stop'
   end
   
   desc "Restart the Autumn daemon"
   task :restart do
-    system 'script/daemon restart'
+    system 'autumn restart -D'
   end
   
   desc "Start Autumn but not as a daemon (stay on top)"
   task :run do
-    system 'script/daemon run'
+    system 'autumn start'
   end
   
   desc "Force the daemon to a stopped state (clears PID files)"
   task :zap do
-    system 'script/daemon zap'
+    system 'autumn stop'
   end
 end
 
@@ -101,11 +101,6 @@ namespace :db do
 end
 
 namespace :doc do
-  desc "Generate API documentation for Autumn"
-  task :api => :environment do
-    FileUtils.remove_dir 'doc/api' if File.directory? 'doc/api'
-    system "rdoc --main README --title 'Autumn API Documentation' -o doc/api --line-numbers --inline-source libs README"
-  end
   
   desc "Generate documentation for all leaves"
   task :leaves => :environment do

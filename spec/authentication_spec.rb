@@ -2,7 +2,7 @@ require 'set'
 require 'rubygems'
 require 'facets/string'
 
-require 'libs/authentication'
+require 'autumn/authentication'
 
 describe Autumn::Authentication::Base do
   it "should raise an exception when initialized" do
