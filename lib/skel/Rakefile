@@ -1,5 +1,17 @@
 require 'rake'
-require 'libs/genesis'
+require 'spec/rake/spectask'
+
+
+def include_autumn
+  begin
+    require "autumn"
+    require "autumn/genesis"
+  rescue LoadError
+    require "rubygems"
+    require "autumn"
+    require "autumn/genesis"
+  end
+end
 
 task :default do
   puts 'Type "rake --tasks" to see a list of tasks you can perform.'
@@ -7,6 +19,7 @@ end
 
 # Load the Autumn environment.
 task :environment do
+  include_autumn
   AL_ROOT = File.dirname(__FILE__)
   @genesis = Autumn::Genesis.new
   @genesis.load_global_settings
@@ -14,6 +27,7 @@ task :environment do
 end
 
 task :boot do
+  include_autumn
   AL_ROOT = File.dirname(__FILE__)
   @genesis = Autumn::Genesis.new
   @genesis.boot! false
@@ -101,7 +115,6 @@ namespace :db do
 end
 
 namespace :doc do
-  
   desc "Generate documentation for all leaves"
   task :leaves => :environment do
     FileUtils.remove_dir 'doc/leaves' if File.directory? 'doc/leaves'
@@ -116,6 +129,26 @@ namespace :doc do
   task :clear => :environment do
     FileUtils.remove_dir 'doc/api' if File.directory? 'doc/api'
     FileUtils.remove_dir 'doc/leaves' if File.directory? 'doc/leaves'
+  end
+end
+
+desc "Verify leaf and API specs"
+Spec::Rake::SpecTask.new do |t|
+  t.spec_files = FileList['spec/**/*.rb', 'leaves/*/spec/**/*.rb']
+  t.spec_opts = [ '-cfs' ]
+end
+
+namespace :spec do
+  desc "Verify API specs"
+  Spec::Rake::SpecTask.new('autumn') do |t|
+    t.spec_files = FileList['spec/**/*.rb']
+    t.spec_opts = [ '-cfs' ]
+  end
+  
+  desc "Verify leaf specs"
+  Spec::Rake::SpecTask.new('leaves') do |t|
+    t.spec_files = FileList['leaves/*/spec/**/*.rb']
+    t.spec_opts = [ '-cfs' ]
   end
 end
 
