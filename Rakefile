@@ -59,7 +59,7 @@ MESSAGE
 
 Dir['tasks/*.rake'].each{|f| import(f) }
 
-task :default => [:bacon]
+task :default => [:spec]
 
 CLEAN.include %w[
   **/.*.sw?

@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{autumn}
-  s.version = "3.1.4"
+  s.version = "3.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tim 'riscfuture' Morgan"]
@@ -22,6 +22,7 @@ You can now create a new bot:
 
 ============================================================}
   s.require_paths = ["lib"]
+  s.rubyforge_project = %q{pastr}
   s.rubygems_version = %q{1.3.1}
   s.summary = %q{Autumn is a simple and modular irc framework}
 

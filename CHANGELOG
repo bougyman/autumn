@@ -1,3 +1,7 @@
+[be2662e | Sun May 03 15:32:10 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * Version 3.1.4
+
 [d099756 | Sun May 03 15:31:30 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
 
   * added more complete release task and added authors generation to gemspec.  Pulled Rakefile in from the http://github.com/riscfuture/autumn specs branch
