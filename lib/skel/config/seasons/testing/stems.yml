@@ -1,6 +1,6 @@
 --- 
 Example: 
-  nick: $project
+  nick: $${project}
   leaves: 
   - Administrator
   - Scorekeeper

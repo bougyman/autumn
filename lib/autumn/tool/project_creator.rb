@@ -84,10 +84,9 @@ class ProjectCreator
   # configuration
 
   def post_process(file)
-    return
     source = File.read(file)
     File.open(file, 'w+') do |io|
-      io.write(source.gsub('$project', @name))
+      io.puts source.gsub('$${project}', @name)
     end
   end
 

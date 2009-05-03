@@ -1,3 +1,23 @@
+[f31139f | Sun May 03 12:22:00 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * fixed load paths in ./script/server
+
+[53fd98c | Sun May 03 12:19:54 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * added readme in directories so then will not be empty
+
+[fb72063 | Sun May 03 12:13:39 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * fixed creator, defaulting to sqlite for testing season, and freenode/#autumn
+
+[aaa40bb | Sun May 03 11:23:41 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * moved version.rb into its own file (for easy reversioning)
+
+[a67bccd | Sun May 03 11:21:09 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * added CHANGELOG, MANIFEST, gemspec, and AUTHORS file (gem builds now)
+
 [6bbfa4f | Sun May 03 10:37:07 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
 
   * added autumn binary and tools for creating new project
