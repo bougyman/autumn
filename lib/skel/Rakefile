@@ -3,7 +3,14 @@ require 'spec/rake/spectask'
 
 
 def include_autumn
+  require "pathname"
   begin
+    # Dev-time paths, for checking gems and trees in-place (like skel)
+    if Pathname.new(__FILE__).dirname.join("lib","autumn.rb").file?
+      $LOAD_PATH.unshift Pathname.new(__FILE__).dirname.expand_path.join("lib")
+    elsif Pathname.new(__FILE__).dirname.join("..").expand_path.join("autumn.rb").file?
+      $LOAD_PATH.unshift Pathname.new(__FILE__).dirname.join("..").expand_path
+    end
     require "autumn"
     require "autumn/genesis"
   rescue LoadError
@@ -33,123 +40,9 @@ task :boot do
   @genesis.boot! false
 end
 
-namespace :app do
-  desc "Launch the Autumn daemon"
-  task :start do
-    system 'autumn start -D'
-  end
-  
-  desc "Stop the Autumn daemon"
-  task :stop do
-    system 'autumn stop'
-  end
-  
-  desc "Restart the Autumn daemon"
-  task :restart do
-    system 'autumn restart -D'
-  end
-  
-  desc "Start Autumn but not as a daemon (stay on top)"
-  task :run do
-    system 'autumn start'
-  end
-  
-  desc "Force the daemon to a stopped state (clears PID files)"
-  task :zap do
-    system 'autumn stop'
-  end
-end
-
-namespace :log do
-  desc "Remove all log files"
-  task :clear do
-    system 'rm -vf tmp/*.log tmp/*.output log/*.log*'
-  end
-  
-  desc "Print all error messages in the log files"
-  task :errors => :environment do
-    season_log = "log/#{@genesis.config.global :season}.log"
-    system_log = 'tmp/autumn.log'
-    if File.exists? season_log then
-      puts "==== ERROR-LEVEL LOG MESSAGES ===="
-      File.open(season_log, 'r') do |log|
-        puts log.grep(/^[EF],/)
-      end
-    end
-    if File.exists? system_log then
-      puts "====   UNCAUGHT EXCEPTIONS    ===="
-      File.open(system_log, 'r') do |log|
-        puts log.grep(/^[EF],/)
-      end
-    end
-  end
-end
-
-def local_db?(db)
-  db.host.nil? or db.host == 'localhost'
-end
-
-namespace :db do
-  desc "Recreate database tables according to the model objects"
-  task :migrate => :boot do
-    dname = ENV['DB']
-    raise "Usage: DB=[Database config name] rake db:migrate" unless dname
-    raise "Unknown database config #{dname}" unless database = repository(dname.to_sym)
-    puts "Migrating the #{dname} database..."
-    # Find models that have definitions for the selected database and migrate them
-    repository(dname.to_sym) do
-      repository(dname.to_sym).models.each { |mod| mod.auto_migrate! dname.to_sym }
-    end
-  end
-  desc "Nondestructively update database tables according to the model objects"
-  task :upgrade => :boot do
-    dname = ENV['DB']
-    raise "Usage: DB=[Database config name] rake db:upgrade" unless dname
-    raise "Unknown database config #{dname}" unless database = repository(dname.to_sym)
-    puts "Upgrading the #{dname} database..."
-    # Find models that have definitions for the selected database and upgrade them
-    repository(dname.to_sym) do
-      repository(dname.to_sym).models.each { |mod| mod.auto_upgrade! dname.to_sym }
-    end
-  end
-end
-
-namespace :doc do
-  desc "Generate documentation for all leaves"
-  task :leaves => :environment do
-    FileUtils.remove_dir 'doc/leaves' if File.directory? 'doc/leaves'
-    Dir.glob("leaves/*").each do |leaf_dir|
-      Dir.chdir leaf_dir do
-        system "rdoc --main README --title '#{File.basename(leaf_dir).camelcase} Documentation' -o ../../doc/leaves/#{File.basename leaf_dir} --line-numbers --inline-source controller.rb helpers models README"
-      end
-    end
-  end
-  
-  desc "Remove all documentation"
-  task :clear => :environment do
-    FileUtils.remove_dir 'doc/api' if File.directory? 'doc/api'
-    FileUtils.remove_dir 'doc/leaves' if File.directory? 'doc/leaves'
-  end
-end
-
-desc "Verify leaf and API specs"
-Spec::Rake::SpecTask.new do |t|
-  t.spec_files = FileList['spec/**/*.rb', 'leaves/*/spec/**/*.rb']
-  t.spec_opts = [ '-cfs' ]
-end
-
-namespace :spec do
-  desc "Verify API specs"
-  Spec::Rake::SpecTask.new('autumn') do |t|
-    t.spec_files = FileList['spec/**/*.rb']
-    t.spec_opts = [ '-cfs' ]
-  end
-  
-  desc "Verify leaf specs"
-  Spec::Rake::SpecTask.new('leaves') do |t|
-    t.spec_files = FileList['leaves/*/spec/**/*.rb']
-    t.spec_opts = [ '-cfs' ]
-  end
+# Load tasks from main tasks
+Dir["tasks/**/*.rake"].each do |task|
+  load task
 end
 
 # Load any custom Rake tasks in the bot's tasks directory.
