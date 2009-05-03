@@ -1011,10 +1011,11 @@ where <options> may contain:
 
 You can alter the season by setting the +SEASON+ environment variable.
 
-=== autumn start|stop|status|restart -D
+=== autumn start|stop|status|restart PROJECT [options]
 
 The autumn binary can be used to control an Autumn daemon. 
 Starts, stops, shows status of and manages the daemon. 
+PROJECT is the path to the base of your autumn bot
 
 +start+:: start an instance of the application
 +stop+:: stop all instances of the application
