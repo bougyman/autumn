@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+begin
+  require "pathname"
+  require Pathname.new(__FILE__).expand_path.dirname.join("..", "lib", "autumn")
+  require "autumn/tool/bin"
+rescue LoadError
+  require "rubygems"
+  require "autumn"
+  require "autumn/tool/bin"
+end
+Autumn::Tool::Bin::Cmd.run(ARGV)
