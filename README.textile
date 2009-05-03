@@ -75,6 +75,7 @@ Before you can run Autumn and try out the example leaves, you'll need to set up
 a few things. Here are the steps:
 
 h3. Creating your bot's tree
+
 To create a new tree, change to a directory where you want your bot to run from,
 then use <tt>autumn create PROJECT</tt> to create the directory (PROJECT should
 be replaced with your bot's name) with the structure outlined above.
@@ -1057,7 +1058,7 @@ h3. <tt>autumn start|stop|status|restart -D</tt>
 
 The @autumn@ command controls the Autumn daemon. 
 
-Usage: autumn [command] [options] -- [application options]@
+Usage: @autumn [command] [options] -- [application options]@
 
 where [command] is one of:
 
