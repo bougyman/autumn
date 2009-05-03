@@ -1,3 +1,15 @@
+[5d61bfc | Sun May 03 16:20:42 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * updated readme to show autumn binary usage
+
+[dc4e6a8 | Sun May 03 15:58:06 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * 3.1.5 adds working specs
+
+[333d984 | Sun May 03 15:57:09 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * got specs working, added spec task as default in Rakefile
+
 [be2662e | Sun May 03 15:32:10 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
 
   * Version 3.1.4

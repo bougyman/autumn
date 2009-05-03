@@ -95,7 +95,6 @@ spec/ctcp_spec.rb
 spec/daemon_spec.rb
 spec/datamapper_hacks_spec.rb
 tasks/authors.rake
-tasks/bacon.rake
 tasks/changelog.rake
 tasks/copyright.rake
 tasks/doc.rake
@@ -107,4 +106,5 @@ tasks/rcov.rake
 tasks/release.rake
 tasks/reversion.rake
 tasks/setup.rake
+tasks/spec.rake
 tasks/yard.rake
