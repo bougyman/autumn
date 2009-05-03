@@ -25,6 +25,7 @@ PROJECT_COPYRIGHT = [
 
 # To release the monthly version do:
 # $ PROJECT_VERSION=2009.03 rake release
+IGNORE_FILES = [/\.gitignore/]
 
 GEMSPEC = Gem::Specification.new{|s|
   s.name         = 'autumn'
@@ -35,7 +36,7 @@ GEMSPEC = Gem::Specification.new{|s|
   s.homepage     = 'http://github.com/bougyman/autumn'
   s.platform     = Gem::Platform::RUBY
   s.version      = (ENV['PROJECT_VERSION'] || Date.today.strftime("%Y.%m.%d"))
-  s.files        = `git ls-files`.split("\n").sort
+  s.files        = `git ls-files`.split("\n").sort.reject { |f| IGNORE_FILES.detect { |exp| f.match(exp)  } }
   s.has_rdoc     = true
   s.require_path = 'lib'
   s.bindir = "bin"

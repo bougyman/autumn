@@ -1,5 +1,6 @@
 require 'rake/gempackagetask'
 
+desc "make a gemspec"
 task :gemspec => [:manifest, :changelog] do
   gemspec_file = "#{GEMSPEC.name}.gemspec"
   File.open(gemspec_file, 'w+'){|gs| gs.puts(GEMSPEC.to_ruby) }

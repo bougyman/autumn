@@ -1,0 +1,471 @@
+[6bbfa4f | Sun May 03 10:37:07 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * added autumn binary and tools for creating new project
+
+[ad03663 | Sun May 03 10:07:23 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * moved prototype to lib/skel and pulled in specs from specs branch
+
+[4292982 | Sat May 02 16:33:29 UTC 2009] Kevin Berry <KevinBerry@nrs.us>
+
+  * Add gem tasks (from ramaze tree), and move Rakefile into the proto (since it is more appropriate to a deployed application)
+
+[977ad7b | Fri May 01 01:29:53 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * reworked lib to get ready for gemming.  changed paths to get correct library loading
+
+[52e18a5 | Sun Mar 29 00:38:18 UTC 2009] Tim Morgan <riscfuture@gmail.com>
+
+  * Convert yaml string to regex
+
+[9d588fc | Sun Mar 29 00:33:51 UTC 2009] Tim Morgan <riscfuture@gmail.com>
+
+  * Custom nick regexes
+
+[e3bb5c3 | Sun Mar 29 00:23:57 UTC 2009] Mark Coates <mark.coates@gmail.com>
+
+  * Taking out hard-coded '!'; replacing with options[:command_prefix]
+
+[9526cd3 | Wed Jan 21 20:55:52 UTC 2009] Tim Morgan <riscfuture@gmail.com>
+
+  * Whoops, bugfix
+
+[ccae5af | Tue Jan 20 19:59:17 UTC 2009] Tim Morgan <riscfuture@gmail.com>
+
+  * Optimized DB query a bit
+
+[0298fce | Tue Jan 20 03:25:27 UTC 2009] root <root@www.timothymorgan.info>
+
+  * All directories referenced from AL_ROOT
+
+[70d9116 | Thu Jan 15 05:10:01 UTC 2009] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for d26328bfb38f0f849f293cfa359e51dc2989f106
+
+[39b6cd8 | Thu Jan 15 04:57:52 UTC 2009] Tim Morgan <riscfuture@gmail.com>
+
+  * Now parses more server messages
+
+[af71808 | Thu Jan 15 04:57:18 UTC 2009] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for authentication on unprotected methods
+
+[6a294b8 | Thu Jan 15 04:56:39 UTC 2009] Tim Morgan <riscfuture@gmail.com>
+
+  * Facets and gems updates
+
+[ce4d1d0 | Mon Jan 12 10:36:33 UTC 2009] comboy <kacper.ciesla@gmail.com>
+
+  * "$: <<" insteoad of "Dir.chdir"
+
+    Changing current working directory may be very confusing, especially when
+    working with some other libs.
+    
+    Signed-off-by: Tim Morgan <riscfuture@gmail.com>
+
+[d26328b | Sat Sep 20 12:10:42 UTC 2008] bterlson <btthalion@gmail.com>
+
+  * Fix crash bug caused by a command with only a semi-colon for its parameters (eg: ":bterlson!n=bterlson@xx.xx.xx.xx QUIT :").
+
+    Signed-off-by: Tim Morgan <riscfuture@gmail.com>
+
+[cd59f55 | Fri Dec 12 03:23:02 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix and improvement for Anise support
+
+[0d20430 | Fri Dec 12 03:22:41 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * script/console documentation
+
+[49fe9a4 | Fri Dec 12 02:15:28 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Facets 2.5, DataMapper 0.9.8
+
+[d5ef219 | Wed Nov 19 19:23:03 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * For some reason I needed to do this to get it to work?
+
+[18cb672 | Thu Oct 16 01:26:42 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * DataMapper 0.9.6
+
+[d71a23e | Wed Sep 03 17:16:58 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Finished DataMapper hacks spec
+
+[770dc2c | Mon Oct 06 16:34:18 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Facets 2.4.5
+
+[331c618 | Mon Sep 08 21:45:26 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added throttling support (preliminary)
+
+[fe4e65f | Mon Sep 08 20:27:49 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for new facets with script/*
+
+[793ddc4 | Fri Sep 05 20:06:17 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Facets 2.4.4 compatibility
+
+[a50d402 | Sat Aug 30 06:10:36 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Using DataMapper 0.9.5
+
+[a4f3d7d | Fri Aug 22 18:53:45 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Suppressing unnecessary docs
+
+[1e58f99 | Fri Aug 22 02:23:36 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * DataMapper 0.9.4 compatibility
+
+[f338aab | Wed Aug 20 20:15:39 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for new Facets
+
+[fa46a07 | Wed Aug 20 20:15:23 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for AL_ROOT in script/console
+
+[edd8050 | Mon Aug 11 19:07:13 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Sends channel password on startup join (mgbp's fix) and also on rejoin after kick
+
+[856b156 | Tue Jul 29 18:56:30 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Requiring DataMapper 0.9.2 support until I can find out why 0.9.3 doesn't work
+
+[151b42e | Sun Jul 27 02:31:29 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Improvements for DataMapper migration rake task
+
+[388292b | Sun Jul 27 01:58:42 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added script/console
+
+[e4c68c5 | Sun Jul 27 01:04:17 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Improvements to leaf hot-reloading: Now reloads all leaves by default; and you can name a specific leaf to reload
+
+[a2e1d7a | Sun Jul 27 00:43:47 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Scorekeeper has open scoring by default now
+
+[20764d0 | Fri Jul 25 17:48:35 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * No longer requiring *_command methods to return responses
+
+[b99d832 | Wed Jul 23 21:29:03 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Fixes for default daemon and daemon choosing
+
+[e28fece | Wed Jul 23 21:19:33 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for !commands and !quit
+
+[761b1dc | Tue Jul 22 21:15:47 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Indentation fixes
+
+[879b397 | Tue Jul 22 20:52:46 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * mailto: is redundant in textile
+
+[e5437ff | Mon Jul 21 21:42:05 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Possible bugfix for when render is called at the end of a method
+
+[3072462 | Wed Jul 16 20:01:45 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Now chooses the correct view for aliased commands that return strings
+
+[0c8fee9 | Wed Jul 16 04:09:17 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Tweaked ops auth docs
+
+[0815f08 | Wed Jul 16 03:49:23 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfixes for ForgetfulQueue
+
+[f42b2ba | Wed Jul 16 02:35:10 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added Leaf#alias_command method
+
+[9b5e3cc | Wed Jul 16 02:31:43 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for encoding/decoding CTCP messages
+
+[0bde0a2 | Wed Jul 16 00:32:39 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Fixed intro to include info on setting up the DB schema
+
+[74c31b4 | Tue Jul 15 21:36:51 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Doc updates for new auth module
+
+[ea12698 | Tue Jul 15 21:10:50 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Fixed hostname-based authentication
+
+[3735bc0 | Tue Jul 15 21:03:10 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for sets in Ruby 1.8.6
+
+[5d4924b | Tue Jul 15 20:59:26 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Script/generate updates for new auth module
+
+[2ff6d71 | Fri Jul 11 08:19:36 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Authentication module mostly finished
+
+[84df8a9 | Thu Jul 10 22:38:48 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Coder now rejects empty variable names
+
+[0403b40 | Wed Jul 09 23:42:59 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * ChannelLeaf now listens for invites to channels its stem is not a part of
+
+[108f0d9 | Wed Jul 09 23:28:50 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Yet another bugfix in normalized_channel_name
+
+[69b1adc | Wed Jul 09 20:12:00 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Empty doc directory
+
+[01dba80 | Tue Jul 08 23:52:42 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * More bugfixes for case-insensitive channels
+
+[e691cd3 | Tue Jul 08 23:18:56 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for switch from Arrays to Sets
+
+[65f6c47 | Tue Jul 08 22:44:33 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Using Sets instead of Arrays where appropriate
+
+[f215f4f | Tue Jul 08 20:59:22 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Just discovered an important consideration; documenting it
+
+[a558bd4 | Tue Jul 08 08:07:55 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added empty directories the correct way
+
+[bc49540 | Sun Jul 06 16:57:35 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * More doc updates, filename changes
+
+[0d2d62f | Sat Jul 05 06:41:02 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * More documentation updates for Autumn 3
+
+[1bf60b4 | Sat Jul 05 06:03:57 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Documentation updates
+
+[1b8a9f3 | Sat Jul 05 04:14:18 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Removed default DM database since it seems to be no longer necessary; small Scorekeeper change
+
+[1555539 | Sat Jul 05 03:20:51 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added leaf-level :root option; scorekeeper fix
+
+[46ef8f7 | Sat Jul 05 01:54:48 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Forcing a shared directory by including a README
+
+[e4247a3 | Sat Jul 05 01:38:18 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added README to auto-generated leaves
+
+[3ef38e5 | Sat Jul 05 01:26:03 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Incremented version to 2.0.4
+
+[d1777ac | Sat Jul 05 01:23:40 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Rakefile updates; better leaf documentation
+
+[30d84bd | Sat Jul 05 00:58:25 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Documentation updates
+
+[1d4193d | Fri Jul 04 23:37:13 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Supports hot-reloading
+
+[519e377 | Fri Jul 04 09:07:02 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for render views and reloading
+
+[6fd30be | Fri Jul 04 09:00:36 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added \!commands command
+
+[06bded0 | Fri Jul 04 08:55:52 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Made leaves.yml file optiona
+
+[f185a31 | Fri Jul 04 08:40:08 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Doc updates for Autumn 3.0
+
+[51d14eb | Fri Jul 04 07:13:36 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added backwards compatibility for commands w/o views
+
+[a2ff42d | Fri Jul 04 06:52:24 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * More Ruby 1.9/1.8 fixes
+
+[e6dbfd8 | Fri Jul 04 06:43:39 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added non-complicated example bot
+
+[c2948bd | Fri Jul 04 06:42:37 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * More Ruby 1.9 fixes
+
+[4e50e1f | Fri Jul 04 06:41:58 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Ruby 1.9 compat fixes; added
+
+[6fb9401 | Fri Jul 04 06:32:56 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for script/generator leaf controller class names
+
+[04853d5 | Fri Jul 04 06:30:54 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for load_shared_code
+
+[c48352c | Fri Jul 04 06:02:50 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added git support to scripts, updated for 3.0 dir layout
+
+[c8ca929 | Fri Jul 04 05:29:43 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added support for shared code
+
+[e33f921 | Fri Jul 04 05:25:48 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added leaf-global config.yml file
+
+[e881418 | Fri Jul 04 03:52:32 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Using arbitrary log levels in season.yml
+
+[f138a42 | Fri Jul 04 03:31:57 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for Facets 2.4; logging of errors in synced stem methods
+
+[e172d8a | Fri Jul 04 02:58:57 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Got Scorekeeper all nice and working now
+
+[9414ede | Fri Jul 04 00:29:55 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Got Scorekeeper basics working + task improvements
+
+[3228a68 | Thu Jul 03 23:53:00 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Got rake db:migrate working with current DataMapper
+
+[b038f3e | Thu Jul 03 22:59:52 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Support database config strings
+
+[03e390c | Thu Jul 03 22:55:08 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix in generator
+
+[b3dfbf4 | Thu Jul 03 22:54:06 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Facets 2.4.1 updates
+
+[e94b3fb | Thu Jul 03 22:41:34 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix in Leaf#database method
+
+[2dc6c82 | Thu Jul 03 22:41:15 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfixes for newer DataMapper and Facets
+
+[a0e1e32 | Thu Jul 03 22:23:41 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Updated Rakefile for new file layout
+
+[d5069e2 | Thu Jul 03 18:46:49 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Textile fixes
+
+[c6d61e5 | Thu Jul 03 18:35:09 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Doc updates for Github and in general
+
+[171ac47 | Mon Jun 30 01:41:38 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfix for case-insenstive servers, and some inspect methods
+
+[5ff327a | Mon Jun 30 01:06:59 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Bugfixes to make sample task work
+
+[1230610 | Sun Jun 29 17:29:50 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Working example Rake task
+
+[a4ac37d | Sun Jun 29 17:25:10 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Small improvements to shorten up Oshuma's code
+
+[7c1d4ae | Sun Jun 29 05:50:17 UTC 2008] Dale Campbell <dale@save-state.net>
+
+  * Small comment update.
+
+[6d750e1 | Sun Jun 29 00:06:43 UTC 2008] Dale Campbell <dale@save-state.net>
+
+  * Custom bot Rake tasks.
+
+[ae1786e | Sat Jun 28 23:08:08 UTC 2008] Dale Campbell <dale@save-state.net>
+
+  * Adding placeholder directories.
+
+[a9448d5 | Sat Jun 28 02:45:50 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Removed testing bot
+
+[826547c | Sat Jun 28 02:43:09 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added gitignore file
+
+[cc31830 | Sat Jun 28 02:42:18 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Removing log file
+
+[e6a58d8 | Sat Jun 28 02:40:40 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Checking in what I have so far for autumn3
+
+[859127a | Sat Jun 28 02:20:22 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Fix for command prefixes that are special regex characters
+
+[2f14448 | Sat Jun 28 02:18:23 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Doc fix
+
+[c516201 | Sat Jun 28 02:00:06 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Added vhost feature
+
+[e10fae9 | Fri Jun 27 23:30:04 UTC 2008] Tim Morgan <riscfuture@gmail.com>
+
+  * Copy from SVN repo
+
