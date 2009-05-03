@@ -3,8 +3,8 @@ require 'rubygems'
 require 'facets/array'
 require 'facets/string'
 
-require 'libs/misc'
-require 'libs/daemon'
+require 'autumn/misc'
+require 'autumn/daemon'
 
 describe Autumn::Daemon do
   it "should not allow the creation of a default Daemon" do

@@ -41,7 +41,7 @@ GEMSPEC = Gem::Specification.new{|s|
   s.require_path = 'lib'
   s.bindir = "bin"
   s.executables = ["autumn"]
-#  s.rubyforge_project = "autumn"
+  s.rubyforge_project = "pastr"
 
   s.add_dependency('facets')
   s.add_dependency('anise')

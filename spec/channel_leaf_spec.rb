@@ -1,7 +1,8 @@
 require 'logger'
 require 'set'
 
-require 'libs/genesis'
+require 'autumn'
+require 'autumn/genesis'
 
 gen = Autumn::Genesis.new
 gen.load_libraries

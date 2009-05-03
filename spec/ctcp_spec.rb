@@ -6,11 +6,11 @@ require 'facets/kernel'
 require 'facets/string'
 require 'anise'
 
-require 'libs/misc'
-require 'libs/stem_facade'
-require 'libs/daemon'
-require 'libs/stem'
-require 'libs/ctcp'
+require 'autumn/misc'
+require 'autumn/stem_facade'
+require 'autumn/daemon'
+require 'autumn/stem'
+require 'autumn/ctcp'
 
 describe Autumn::CTCP do
   before :each do

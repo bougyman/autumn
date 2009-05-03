@@ -2,7 +2,7 @@ require 'rubygems'
 require 'facets/array'
 require 'facets/string'
 
-require "libs/coder"
+require "autumn/coder"
 
 describe Autumn::Coder do
   before :each do

@@ -2,8 +2,8 @@ require 'rubygems'
 require 'facets/symbol'
 require 'dm-core'
 
-require 'libs/misc'
-require 'libs/datamapper_hacks'
+require 'autumn/misc'
+require 'autumn/datamapper_hacks'
 
 describe DataMapper::Resource do
   describe "within a module" do
