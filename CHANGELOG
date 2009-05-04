@@ -1,3 +1,7 @@
+[6fa0854 | Sun May 03 20:04:59 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
+
+  * Version 3.1.9 Separated skel/ rake tasks, got rake setup to install all deps for running initial app
+
 [b3bb82c | Sun May 03 20:03:35 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
 
   * refactored skel/ specs for better separation.  got rake setup to install all deps needed to run skel/ application

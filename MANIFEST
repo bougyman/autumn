@@ -102,6 +102,7 @@ spec/coder_spec.rb
 spec/ctcp_spec.rb
 spec/daemon_spec.rb
 spec/datamapper_hacks_spec.rb
+spec/stem_spec.rb
 tasks/authors.rake
 tasks/changelog.rake
 tasks/copyright.rake
