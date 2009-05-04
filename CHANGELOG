@@ -1,3 +1,7 @@
+[09a4209 | Mon May 04 18:05:49 UTC 2009] TJ Vanderpoel <bougyman@zero.(none)>
+
+  * Version 3.1.10 sets NICK_REGEX back to allowing leading special chars.  Also added spec for Stem#receive, which was where the problem showed itself
+
 [6fa0854 | Sun May 03 20:04:59 UTC 2009] TJ Vanderpoel <bougy.man@gmail.com>
 
   * Version 3.1.9 Separated skel/ rake tasks, got rake setup to install all deps for running initial app

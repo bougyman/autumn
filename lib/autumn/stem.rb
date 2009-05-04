@@ -160,7 +160,7 @@ module Autumn
     # can vary from server to server. (See channel?)
     CHANNEL_REGEX = "[^\\s\\x7,:]+"
     # The default regular expression for IRC nicknames.
-    NICK_REGEX = "[a-zA-Z][a-zA-Z0-9\\-_\\[\\]\\{\\}\\\\|`\\^]+"
+    NICK_REGEX = "[a-zA-Z0-9\\-_\\[\\]\\{\\}\\\\|`\\^]+"
   
     # A parameter in an IRC command.
   
@@ -317,7 +317,7 @@ module Autumn
       @throttle_threshold = opts[:throttle_threshold]
       @throttle_threshold ||= 5
       
-      @nick_regex = (opts[:nick_regex] ? opts[:nick_regex].to_re : NICK_REGEX)
+      @nick_regex = (opts[:nick_regex] ? opts[:nick_regex] : NICK_REGEX)
       
       @channels = Set.new
       @channels.merge opts[:channels] if opts[:channels]
@@ -725,6 +725,7 @@ module Autumn
     ann :irc_nick_event, :stem_sync => true # So methods that synchronize can be guaranteed the channel variables are up to date
 
     def irc_quit_event(stem, sender, arguments) # :nodoc:
+      puts sender.inspect
       @chan_mutex.synchronize do
         @channel_members.each { |chan, members| members.delete sender[:nick] }
         #TODO what should we do if we are in the middle of receiving NAMES replies?
