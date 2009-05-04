@@ -1,7 +1,6 @@
 require 'logger'
 require 'set'
 
-require 'autumn'
 require 'autumn/genesis'
 
 gen = Autumn::Genesis.new

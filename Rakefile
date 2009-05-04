@@ -5,6 +5,7 @@ require 'rake/clean'
 require 'rake/gempackagetask'
 require 'time'
 require 'date'
+require "lib/autumn"
 
 PROJECT_SPECS = FileList[
   'spec/*.rb',
